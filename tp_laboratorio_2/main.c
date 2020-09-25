@@ -43,6 +43,8 @@ int main()
     revisarResuladoInitEmployees(resultadoInicializacion);
 
     contadorId = 0;
+    //La funcion que se ocupa del testeo:
+    HardCodearArray(employee, 5);
 
     do
     {
@@ -64,13 +66,16 @@ int main()
                 //printf("INFORMAR!");
                 for(int i = 0; i < 1000; i++)
                 {
-                    printf("id: %d, name: %s, lastName: %s, salary: %.2f, sector: %d, isEmpty: %d\n",
-                           employee[i].id,
-                           employee[i].name,
-                           employee[i].lastName,
-                           employee[i].salary,
-                           employee[i].sector,
-                           employee[i].isEmpty);
+                    if(employee[i].isEmpty == 0)
+                    {
+                        printf("id: %d, name: %s, lastName: %s, salary: %.2f, sector: %d, isEmpty: %d\n",employee[i].id,
+                                                                                                         employee[i].name,
+                                                                                                         employee[i].lastName,
+                                                                                                         employee[i].salary,
+                                                                                                         employee[i].sector,
+                                                                                                         employee[i].isEmpty);
+                    }
+
                 }
                 break;
             default:

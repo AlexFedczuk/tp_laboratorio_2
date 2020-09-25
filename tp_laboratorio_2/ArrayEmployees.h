@@ -12,6 +12,7 @@ typedef struct
 int initEmployees(eEmployee list[], int len);
 void InicializarElementosArray(eEmployee lista[],int tam);
 void revisarResuladoInitEmployees(int resultado);
+void HardCodearArray(eEmployee lista[], int tam);
 
 //Case 1
 int CargarEmpleado(eEmployee lista[], int tam, int contadorId);

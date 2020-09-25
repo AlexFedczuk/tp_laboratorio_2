@@ -51,6 +51,29 @@ void revisarResuladoInitEmployees(int resultado)
     }
 }
 
+void HardCodearArray(eEmployee lista[], int tam)
+{
+    int id[5] = {1, 2, 3, 4, 5};
+    char nombre[5][25] = {"Pepa", "Pepe", "Pepi", "Pepo", "Pepu"};
+    char apellido[5][25] = {"Ram", "Rem", "Rim", "Rom", "Rum"};;
+    float salario[5] = {25000.55 , 24500.50, 30000.35, 35000.25, 36250.45};
+    int sector[5] = {1, 2, 3, 1, 4};
+    //int isEmpty[5] = {1, 1, 1, 1, 1};
+    int isEmpty[5] = {0, 1, 0, 0, 0};
+
+    int i;
+
+    for(i = 0; i < tam; i++)
+    {
+        lista[i].id = id[i];
+        strcpy(lista[i].name, nombre[i]);
+        strcpy(lista[i].lastName, apellido[i]);
+        lista[i].salary = salario[i];
+        lista[i].sector = sector[i];
+        lista[i].isEmpty = isEmpty[i];
+    }
+}
+
 ///*****************************************************************/
 //Case 2
 int CargarEmpleado(eEmployee lista[], int tam, int contadorId)
