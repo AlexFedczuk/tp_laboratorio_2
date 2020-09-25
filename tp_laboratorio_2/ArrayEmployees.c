@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "miBiblioteca.h"
 #include "ArrayEmployees.h"
 
 //Case 1
@@ -177,3 +178,97 @@ void revisarResuladoAddEmployee(int resultado)
 }
 
 ///*****************************************************************/
+
+void ModificarUnEmpleado(eEmployee lista[], int tam)
+{
+    int idIngresado;
+    int index;
+    int opcion;
+
+    idIngresado = PedirUnNumeroEntero("\nIngrese el ID del empleado que desea modificar: ");
+
+    index = findEmployeeById(lista, tam, idIngresado);
+    RevisarResultadofindEmployeeById(index);
+
+    if(index != -1)
+    {
+        do
+        {
+            printf("\nQue desea modificar?\n");
+            printf("1. NOMBRE\n");
+            printf("2. APELLIDO \n");
+            printf("3. SALARIO\n");
+            printf("4. SECTOR\n");
+            printf("5. CONTINUAR\n\n");
+            printf("Ingrese una opcion: ");
+            fflush(stdin);
+            scanf("%d", &opcion);
+
+            if(opcion < 1 || opcion > 5)
+            {
+                printf("\nError! Opcion invalida!\n");
+                printf("Ingresar una opcion del sub-menu: ");
+                fflush(stdin);
+                scanf("%d", &opcion);
+            }else
+            {
+                switch(opcion)
+                {
+                    case 1:
+                        PedirUnaCadena(lista[index].name, 25, "\nIngrese el nuevo nombre: ");
+                        break;
+                    case 2:
+                        PedirUnaCadena(lista[index].lastName, 25, "\nIngrese el nuevo apellido: ");
+                        break;
+                    case 3:
+                        lista[index].salary = PedirUnNumeroFlotante("\nIngrese el nuevo sueldo: ");
+                        break;
+                    case 4:
+                        lista[index].sector = PedirUnNumeroEntero("\nIngrese el numero del nuevo sector: ");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        while(opcion != 5);
+    }
+}
+
+int findEmployeeById(eEmployee list[], int len,int id)
+{
+    int index;
+
+    int i;
+
+    index = -1;
+
+    if(list != 0 && (len > 0 && len < 1001) && id > 0)
+    {
+        for(i = 0; i < len; i++)
+        {
+            if(list[i].id == id)
+            {
+                index = i;
+                break;
+            }
+        }
+    }
+
+    return index;
+}
+
+void RevisarResultadofindEmployeeById(int resultado)
+{
+    if(resultado == -1)
+    {
+        printf("\nHubo un error al buscar un ID!\n");
+        printf("Error! Invalid length or NULL pointer received or employee not found\n");
+    }else
+    {
+        if(resultado == 0)
+        {
+            printf("\nOK\n");
+        }
+    }
+}

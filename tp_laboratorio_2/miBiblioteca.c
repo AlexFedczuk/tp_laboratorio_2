@@ -72,6 +72,24 @@ int MostrarMenu(int opcionMenor, int opcionMayor)
     return opcionElegida;
 }
 
+int PedirUnNumeroEntero(char mensaje[])
+{
+    int numeroIngresado;
 
+    printf(mensaje);
+    fflush(stdin);
+    scanf("%d", &numeroIngresado);
 
-//
+    return numeroIngresado;
+}
+
+float PedirUnNumeroFlotante(char mensaje[])
+{
+    float numeroIngresado;
+
+    printf(mensaje);
+    fflush(stdin);
+    scanf("%f", &numeroIngresado);
+
+    return numeroIngresado;
+}

@@ -48,3 +48,19 @@ void FormalizarApellidoNombreParte2(int buffer, char apellidoNombre[]);
  *
  */
 int MostrarMenu(int opcionMenor, int opcionMayor);
+
+/** \brief Pedirle un numero entero al usuario.
+ *
+ * \param mensaje[] char. El mensaje para instruir al usuario.
+ * \return int. Devuelve el numero ingresado por el usuaario.
+ *
+ */
+int PedirUnNumeroEntero(char mensaje[]);
+
+/** \brief Pedirle un numero con coma al usuario.
+ *
+ * \param mensaje[] char. El mensaje para instruir al usuario.
+ * \return float. Devuelve el numero ingresado por el usuaario.
+ *
+ */
+float PedirUnNumeroFlotante(char mensaje[]);
