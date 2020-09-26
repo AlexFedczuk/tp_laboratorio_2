@@ -26,5 +26,8 @@ int findEmployeeById(eEmployee list[], int len,int id);
 void RevisarResultadofindEmployeeById(int resultado);
 
 //Case 3
+void BajarEmpleado(eEmployee lista[], int tam);
+int removeEmployee(eEmployee list[], int len, int id);
+void RevisarResultadoRemoveEmployee(int resultado);
 
 //Case 4

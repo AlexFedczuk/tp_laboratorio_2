@@ -5,7 +5,7 @@
 #include "miBiblioteca.h"
 #include "ArrayEmployees.h"
 
-//Case 1
+/***----------------------------------------Init -------*/
 int initEmployees(eEmployee list[], int len)
 {
     int resultado;
@@ -74,8 +74,8 @@ void HardCodearArray(eEmployee lista[], int tam)
     }
 }
 
-///*****************************************************************/
-//Case 2
+/***----------------------------------------Case 1 -------*/
+
 int CargarEmpleado(eEmployee lista[], int tam, int contadorId)
 {
     int id;
@@ -200,7 +200,7 @@ void revisarResuladoAddEmployee(int resultado)
     }
 }
 
-///*****************************************************************/
+/***----------------------------------------Case 2 -------*/
 
 void ModificarUnEmpleado(eEmployee lista[], int tam)
 {
@@ -287,6 +287,56 @@ void RevisarResultadofindEmployeeById(int resultado)
     {
         printf("\nHubo un error al buscar un ID!\n");
         printf("Error! Invalid length or NULL pointer received or employee not found\n");
+    }else
+    {
+        if(resultado == 0)
+        {
+            printf("\nOK\n");
+        }
+    }
+}
+
+/***----------------------------------------Case 3 -------*/
+
+void BajarEmpleado(eEmployee lista[], int tam)
+{
+    int idIngreado;
+    int resultadoRemoveEmployee;
+
+    idIngreado = PedirUnNumeroEntero("\nIngrese el ID del empleado que desea eliminar: ");
+
+    resultadoRemoveEmployee = removeEmployee(lista, tam, idIngreado);
+    RevisarResultadoRemoveEmployee(resultadoRemoveEmployee);
+}
+
+int removeEmployee(eEmployee list[], int len, int id)
+{
+    int i;
+    int resultado;
+
+    resultado = -1;
+
+    if(list != 0 && (len > 0 && len < 1001) && id > 0)
+    {
+        for(i = 0; i < len; i++)
+        {
+            if(list[i].id == id && list[i].isEmpty == 0)
+            {
+                list[i].isEmpty = 1;
+                resultado = 0;
+            }
+        }
+    }
+
+    return resultado;
+}
+
+void RevisarResultadoRemoveEmployee(int resultado)
+{
+    if(resultado == -1)
+    {
+        printf("\nHubo un error al eliminar un empleado!\n");
+        printf("Error! Invalid length or NULL pointer or can't find a employee\n");
     }else
     {
         if(resultado == 0)
