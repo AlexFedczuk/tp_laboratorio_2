@@ -24,7 +24,7 @@
 
 1600629004 c:\users\pc\desktop\tp_laboratorio_2\arrayemployees.h
 
-1601150712 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\main.c
+1601314192 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -34,7 +34,7 @@
 
 1601054643 c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\mibiblioteca.h
 
-1601148469 c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\arrayemployees.h
+1601318258 c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\arrayemployees.h
 
 1601054643 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\mibiblioteca.c
 	<stdio.h>
@@ -42,7 +42,7 @@
 	<ctype.h>
 	"miBiblioteca.h"
 
-1601148469 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\arrayemployees.c
+1601314192 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

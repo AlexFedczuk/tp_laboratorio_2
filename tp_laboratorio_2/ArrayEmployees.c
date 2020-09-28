@@ -12,7 +12,7 @@ int initEmployees(eEmployee list[], int len)
 
     resultado = -1;
 
-    if(list != 0 && len > 0)
+    if(list != 0 && (len > 0 && len < 1001))
     {
         InicializarElementosArray(list, len);
         resultado = 0;
@@ -42,13 +42,13 @@ void revisarResuladoInitEmployees(int resultado)
     {
         printf("\nHubo un error al inicializar el listado!\n");
         printf("Error! Invalid length or NULL pointer\n");
-    }else
+    }/*else
     {
         if(resultado == 0)
         {
             printf("\nOK\n");
         }
-    }
+    }*/
 }
 
 void HardCodearArray(eEmployee lista[], int tam)
@@ -150,7 +150,7 @@ int addEmployee(eEmployee list[],
 
     espacioVacio = BuscarPrimerEspacioVacio(list, len);
 
-    if(list != NULL && (len>0 && len<1001) && espacioVacio != -1)
+    if(list != 0 && (len > 0 && len < 1001) && espacioVacio != -1)
     {
         list[espacioVacio].id = id;
         strcpy(list[espacioVacio].name, name);
@@ -159,7 +159,7 @@ int addEmployee(eEmployee list[],
         list[espacioVacio].sector = sector;
         list[espacioVacio].isEmpty = 0;
 
-        resultado=0;
+        resultado = 0;
     }
 
     return resultado;
@@ -191,13 +191,13 @@ void revisarResuladoAddEmployee(int resultado)
     {
         printf("\nHubo un error al realizar las ALTAS!\n");
         printf("Error! Invalid length or NULL pointer\n");
-    }else
+    }/*else
     {
         if(resultado == 0)
         {
             printf("\nOK\n");
         }
-    }
+    }*/
 }
 
 /***----------------------------------------Case 2 -------*/
@@ -287,13 +287,13 @@ void RevisarResultadofindEmployeeById(int resultado)
     {
         printf("\nHubo un error al buscar un ID!\n");
         printf("Error! Invalid length or NULL pointer received or employee not found\n");
-    }else
+    }/*else
     {
         if(resultado == 0)
         {
             printf("\nOK\n");
         }
-    }
+    }*/
 }
 
 /***----------------------------------------Case 3 -------*/
@@ -324,6 +324,7 @@ int removeEmployee(eEmployee list[], int len, int id)
             {
                 list[i].isEmpty = 1;
                 resultado = 0;
+                break;
             }
         }
     }
@@ -337,11 +338,265 @@ void RevisarResultadoRemoveEmployee(int resultado)
     {
         printf("\nHubo un error al eliminar un empleado!\n");
         printf("Error! Invalid length or NULL pointer or can't find a employee\n");
-    }else
+    }/*else
     {
         if(resultado == 0)
         {
             printf("\nOK\n");
         }
+    }*/
+}
+
+/***----------------------------------------Case 4 -------*/
+
+void InformarListado(eEmployee lista[], int tam)
+{
+    int ordenDeMuestra;
+    float totalSalarios;
+    int cantidadDeEmpleados;
+    float salarioPromedio;
+    int cantidadEmpleadosSalarioMayor;
+
+    ordenDeMuestra = MostrarSubMenuCase4();
+
+    sortEmployees(lista, tam, ordenDeMuestra);
+
+    totalSalarios = CalcularTotalDeSalarios(lista, tam);
+    cantidadDeEmpleados = CalcularCantidadDeEmpleados(lista, tam);
+    salarioPromedio = CalcularPromedioDeSalarios(totalSalarios, cantidadDeEmpleados);
+    cantidadEmpleadosSalarioMayor = CalcularCantidadDeEmpleadosSalarioMayor(lista, tam, salarioPromedio);
+
+    printEmployees(lista, tam);
+    printf("\n   2.\n");
+    printf("\n   Total de salarios: %.2f\n", totalSalarios);
+    printf("   Salario promedio: %.2f\n", salarioPromedio);
+    printf("   Cantidad de empleados que superan el salario promedio: %d\n\n", cantidadEmpleadosSalarioMayor);
+}
+
+int MostrarSubMenuCase4()
+{
+    int opcion;
+
+    printf("\nMostrar listado de empleados afabeticamente de A a Z(0) o Z a A(1)\n");
+
+    do
+    {
+        printf("Ingrese aqui: ");
+        scanf("%d",&opcion);
+
+        if(opcion < 0 || opcion > 1)
+        {
+            printf("\n   Error! Opcion invalida!");
+        }
     }
+    while(opcion < 0 || opcion > 1);
+
+    return opcion;
+}
+
+int sortEmployees(eEmployee list[], int len, int order)
+{
+    int resultado;
+
+    resultado = -1;
+
+    if(list != 0 && (len > 0 && len < 1001) && (order > -1 && order < 2))
+    {
+        switch(order)
+        {
+            case 0:
+                resultado = OrdenarAlfabeticamenteDeLaAaZ(list, len);
+                break;
+
+            case  1:
+                resultado = OrdenarAlfabeticamenteDeLaZaA(list, len);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+    return resultado;
+}
+
+int OrdenarAlfabeticamenteDeLaAaZ(eEmployee lista[], int tam)
+{
+    int resultado;
+    int i;
+    int j;
+
+    eEmployee listaAux;
+
+    resultado = -1;
+
+    for(i = 0; i < tam - 1; i++)
+    {
+        for(j = i + 1; j < tam; j++)
+        {
+            if(stricmp(lista[i].lastName, lista[j].lastName) == 1)
+            {
+                listaAux = lista[i];
+                lista[i] = lista[j];
+                lista[j] = listaAux;
+
+                resultado = 0;
+            }else
+            {
+                if(stricmp(lista[i].lastName, lista[j].lastName) == 0 &&
+                   lista[i].sector > lista[j].sector)
+                {
+                    listaAux = lista[i];
+                    lista[i] = lista[j];
+                    lista[j] = listaAux;
+
+                    resultado = 0;
+                }
+            }
+        }
+    }
+
+    return resultado;
+}
+
+int OrdenarAlfabeticamenteDeLaZaA(eEmployee lista[], int tam)
+{
+    int resultado;
+    int i;
+    int j;
+
+    eEmployee listaAux;
+
+    resultado = -1;
+
+    for(i = 0; i < tam - 1; i++)
+    {
+        for(j = i + 1; j < tam; j++)
+        {
+            if(stricmp(lista[i].lastName, lista[j].lastName) == -1)
+            {
+                listaAux = lista[i];
+                lista[i] = lista[j];
+                lista[j] = listaAux;
+
+                resultado = 0;
+            }else
+            {
+                if(stricmp(lista[i].lastName, lista[j].lastName) == 0 &&
+                   lista[i].sector < lista[j].sector)
+                {
+                    listaAux = lista[i];
+                    lista[i] = lista[j];
+                    lista[j] = listaAux;
+
+                    resultado = 0;
+                }
+            }
+        }
+    }
+
+    return resultado;
+}
+
+int printEmployees(eEmployee list[], int length)
+{
+    int i;
+
+    if(list != 0 && (length > 0 && length < 1001))
+    {
+        printf("\n   1.   ***** Listado de Empleados *****\n\n");
+        printf("   ID      APELLIDO     NOMBRE     SALARIO        SECTOR");
+
+        for(i = 0; i < length; i++)
+        {
+            if(list[i].isEmpty == 0)
+            {
+                printf("\n   %04d    %s    %10s     %10.2f            %d\n", list[i].id,
+                                                                             list[i].lastName,
+                                                                             list[i].name,
+                                                                             list[i].salary,
+                                                                             list[i].sector);
+            }
+        }
+    }
+
+    return 0;
+}
+
+float CalcularTotalDeSalarios(eEmployee lista[], int tam)
+{
+    float acumulador;
+
+    int i;
+
+    acumulador = 0;
+
+    if(lista != 0 && (tam > 0 && tam < 1001))
+    {
+        for(i = 0; i < tam; i ++)
+        {
+            if(lista[i].isEmpty == 0)
+            {
+                acumulador = acumulador + lista[i].salary;
+            }
+        }
+    }
+
+    return acumulador;
+}
+
+int CalcularCantidadDeEmpleados(eEmployee lista[], int tam)
+{
+    int contadorEmpleados;
+
+    int i;
+
+    contadorEmpleados = 0;
+
+    if(lista != 0 && (tam > 0 && tam < 1001))
+    {
+        for(i = 0; i < tam; i ++)
+        {
+            if(lista[i].isEmpty == 0)
+            {
+                contadorEmpleados++;
+            }
+        }
+    }
+
+    return contadorEmpleados;
+}
+
+float CalcularPromedioDeSalarios(float totalSalarios, int cantidadEmpleados)
+{
+    float promedioDeSalarios;
+
+    if(cantidadEmpleados != 0)
+    {
+        promedioDeSalarios = totalSalarios / cantidadEmpleados;
+    }
+
+    return promedioDeSalarios;
+}
+
+int CalcularCantidadDeEmpleadosSalarioMayor(eEmployee lista[],
+                                            int tam,
+                                            float salarioPromedio)
+{
+    int cantidadEmpleados;
+
+    int i;
+
+    cantidadEmpleados = 0;
+
+    for(i = 0; i < tam; i ++)
+    {
+        if(lista[i].salary > salarioPromedio && lista[i].isEmpty == 0)
+        {
+            cantidadEmpleados++;
+        }
+    }
+
+    return cantidadEmpleados;
 }
