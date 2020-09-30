@@ -51,17 +51,20 @@ void revisarResuladoInitEmployees(int resultado)
     }*/
 }
 
-void HardCodearArray(eEmployee lista[], int tam)
+int HardCodearArray(eEmployee lista[], int tam)
 {
     int id[5] = {1, 2, 3, 4, 5};
-    char nombre[5][25] = {"Pepa", "Pepe", "Pepi", "Pepo", "Pepu"};
-    char apellido[5][25] = {"Ram", "Rem", "Rim", "Rom", "Rum"};;
+    char nombre[5][25] = {"pepa", "PePe", "PePI", "PepO", "PEPU"};
+    char apellido[5][25] = {"pam", "ReM", "RiM", "ROm", "rum"};;
     float salario[5] = {25000.55 , 24500.50, 30000.35, 35000.25, 36250.45};
     int sector[5] = {1, 2, 3, 1, 4};
     //int isEmpty[5] = {1, 1, 1, 1, 1};
     int isEmpty[5] = {0, 1, 0, 0, 0};
 
+    int bandera;
     int i;
+
+    bandera = 1;
 
     for(i = 0; i < tam; i++)
     {
@@ -72,6 +75,8 @@ void HardCodearArray(eEmployee lista[], int tam)
         lista[i].sector = sector[i];
         lista[i].isEmpty = isEmpty[i];
     }
+
+    return bandera;
 }
 
 /***----------------------------------------Case 1 -------*/
@@ -202,22 +207,44 @@ void revisarResuladoAddEmployee(int resultado)
 
 /***----------------------------------------Case 2 -------*/
 
+void HacerLaLogicaDelCase2(eEmployee lista[], int tam, int bandera)
+{
+    if(bandera == 1)
+    {
+        ModificarUnEmpleado(lista, tam);
+    }else
+    {
+        printf("Error! Debe haber ingresado almenos un empleado para realizar esta operacion!");
+    }
+}
+
 void ModificarUnEmpleado(eEmployee lista[], int tam)
 {
     int idIngresado;
     int index;
     int opcion;
 
+    int bandera;
+
+    printEmployees(lista, tam);
     idIngresado = PedirUnNumeroEntero("\nIngrese el ID del empleado que desea modificar: ");
 
     index = findEmployeeById(lista, tam, idIngresado);
     RevisarResultadofindEmployeeById(index);
 
+    bandera = 0;
+
     if(index != -1)
     {
         do
         {
-            printf("\nQue desea modificar?\n");
+            if(bandera == 0)
+            {
+                printf("\nQue desea modificar?\n");
+            }else
+            {
+                printf("Desea modificar algo mas?\n");
+            }
             printf("1. NOMBRE\n");
             printf("2. APELLIDO \n");
             printf("3. SALARIO\n");
@@ -226,6 +253,8 @@ void ModificarUnEmpleado(eEmployee lista[], int tam)
             printf("Ingrese una opcion: ");
             fflush(stdin);
             scanf("%d", &opcion);
+
+            bandera = 1;
 
             if(opcion < 1 || opcion > 5)
             {
@@ -253,6 +282,8 @@ void ModificarUnEmpleado(eEmployee lista[], int tam)
                         break;
                 }
             }
+            system("pause");
+            system("cls");
         }
         while(opcion != 5);
     }
@@ -298,11 +329,23 @@ void RevisarResultadofindEmployeeById(int resultado)
 
 /***----------------------------------------Case 3 -------*/
 
+void HacerLaLogicaDelCase3(eEmployee lista[], int tam, int bandera)
+{
+    if(bandera == 1)
+    {
+        BajarEmpleado(lista, tam);
+    }else
+    {
+        printf("Error! Debe haber ingresado almenos un empleado para realizar esta operacion!");
+    }
+}
+
 void BajarEmpleado(eEmployee lista[], int tam)
 {
     int idIngreado;
     int resultadoRemoveEmployee;
 
+    printEmployees(lista, tam);
     idIngreado = PedirUnNumeroEntero("\nIngrese el ID del empleado que desea eliminar: ");
 
     resultadoRemoveEmployee = removeEmployee(lista, tam, idIngreado);
@@ -349,6 +392,17 @@ void RevisarResultadoRemoveEmployee(int resultado)
 
 /***----------------------------------------Case 4 -------*/
 
+void HacerLaLogicaDelCase4(eEmployee lista[], int tam, int bandera)
+{
+    if(bandera == 1)
+    {
+        InformarListado(lista, tam);
+    }else
+    {
+        printf("Error! Debe haber ingresado almenos un empleado para realizar esta operacion!");
+    }
+}
+
 void InformarListado(eEmployee lista[], int tam)
 {
     int ordenDeMuestra;
@@ -371,6 +425,64 @@ void InformarListado(eEmployee lista[], int tam)
     printf("\n   Total de salarios: %.2f\n", totalSalarios);
     printf("   Salario promedio: %.2f\n", salarioPromedio);
     printf("   Cantidad de empleados que superan el salario promedio: %d\n\n", cantidadEmpleadosSalarioMayor);
+}
+
+void FormalizarNombresDeUnArray(eEmployee lista[], int tam, int buffer)
+{
+    int i;
+    int j;
+
+    for(i = 0; i < tam; i++)
+    {
+        if(lista[i].isEmpty == 0)
+        {
+            for(j = 0; j < buffer; j++)
+            {
+                if(j == 0)
+                {
+                    lista[i].name[j] = toupper(lista[i].name[j]);
+                }else
+                {
+                    if(lista[i].name[j] == ' ')
+                    {
+                        lista[i].name[j + 1] = toupper(lista[i].name[j + 1]);
+                    }else
+                    {
+                        lista[i].name[j] = tolower(lista[i].name[j]);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void FormalizarApellidosDeUnArray(eEmployee lista[], int tam, int buffer)
+{
+    int i;
+    int j;
+
+    for(i = 0; i < tam; i++)
+    {
+        if(lista[i].isEmpty == 0)
+        {
+            for(j = 0; j < buffer; j++)
+            {
+                if(j == 0)
+                {
+                    lista[i].lastName[j] = toupper(lista[i].lastName[j]);
+                }else
+                {
+                    if(lista[i].lastName[j] == ' ')
+                    {
+                        lista[i].lastName[j + 1] = toupper(lista[i].lastName[j + 1]);
+                    }else
+                    {
+                        lista[i].lastName[j] = tolower(lista[i].lastName[j]);
+                    }
+                }
+            }
+        }
+    }
 }
 
 int MostrarSubMenuCase4()
@@ -502,6 +614,9 @@ int OrdenarAlfabeticamenteDeLaZaA(eEmployee lista[], int tam)
 int printEmployees(eEmployee list[], int length)
 {
     int i;
+
+    FormalizarNombresDeUnArray(list, length, 25);
+    FormalizarApellidosDeUnArray(list, length, 25);
 
     if(list != 0 && (length > 0 && length < 1001))
     {

@@ -1,4 +1,3 @@
-
 /** \brief Esta funcion se encarga simplemente de solicitar al usuario
  una cadena de caracteres(Por ej: nombre, apellido, etc).
  *

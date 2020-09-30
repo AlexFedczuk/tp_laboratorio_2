@@ -1,4 +1,4 @@
-/******************************************************************************
+/*************************************************************************************************
 
     Datos:
 
@@ -19,7 +19,7 @@
     facilitará el manejo de la lista de empleados y su modificación. En la sección siguiente se
     detallan las funciones que esta biblioteca debe tener.
 
-*******************************************************************************/
+*************************************************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,22 +30,23 @@
 
 #define TAM 1000
 
-
-
 int main()
 {
     int opcionIngresada;
     int resultadoInicializacion;
 
     int contadorId;
+    int bandera;
 
     eEmployee employee[TAM];
 
     resultadoInicializacion = initEmployees(employee, TAM);
     revisarResuladoInitEmployees(resultadoInicializacion);
 
+    bandera = HardCodearArray(employee, 5);
+
     contadorId = 0;
-    HardCodearArray(employee, 5);
+    //bandera = 0;
 
     do
     {
@@ -56,15 +57,16 @@ int main()
             case 1:
                 contadorId++;
                 contadorId = CargarEmpleado(employee, TAM, contadorId);
+                bandera = 1;
                 break;
             case 2:
-                ModificarUnEmpleado(employee, TAM);
+                HacerLaLogicaDelCase2(employee, TAM, bandera);
                 break;
             case 3:
-                BajarEmpleado(employee, TAM);
+                HacerLaLogicaDelCase3(employee, TAM, bandera);
                 break;
             case 4:
-                InformarListado(employee, TAM);
+                HacerLaLogicaDelCase4(employee, TAM, bandera);
                 break;
             default:
                 break;

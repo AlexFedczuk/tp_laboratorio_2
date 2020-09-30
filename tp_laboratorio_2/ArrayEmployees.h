@@ -40,10 +40,10 @@ void revisarResuladoInitEmployees(int resultado);
  *
  * \param lista[] eEmployee Puntero a la variedad de empleados
  * \param tam int Longitud de la matriz
- * \return void
+ * \return int Harcodea el valor de la bandera de "verificacion"
  *
  */
-void HardCodearArray(eEmployee lista[], int tam);
+int HardCodearArray(eEmployee lista[], int tam);
 
 //Case 1
 /** \brief Se encarga de hacer la logica, para realizar altas de empleados,
@@ -93,6 +93,17 @@ agregar un empleado al listado
 void revisarResuladoAddEmployee(int resultado);
 
 //Case 2
+/** \brief Se encarga de llamar aquellas funciones necesarias para realizar
+una modificacion de un empleado y avisar si no se puede
+ *
+ * \param lista[] eEmployee Puntero a la variedad de empleados
+ * \param tam int Longitud de la matriz
+ * \param bandera int La bandera que indicara si se puede o no,
+ realizar la operacion
+ * \return void
+ *
+ */
+void HacerLaLogicaDelCase2(eEmployee lista[], int tam, int bandera);
 
 /** \brief Se encarga de hacer la logica para modificar un empleado
  *
@@ -125,6 +136,17 @@ si hubo un error
 void RevisarResultadofindEmployeeById(int resultado);
 
 //Case 3
+/** \brief Se encarga de llamar aquellas funciones necesarias para realizar
+una baja de un empleado y avisar si no se puede
+ *
+ * \param lista[] eEmployee Puntero a la variedad de empleados
+ * \param tam int Longitud de la matriz
+ * \param bandera int La bandera que indicara si se puede o no,
+ realizar la operacion
+ * \return void
+ *
+ */
+void HacerLaLogicaDelCase3(eEmployee lista[], int tam, int bandera);
 
 /** \brief Se encarga de hacer la logica para bajar un empleado
  *
@@ -156,6 +178,18 @@ usuario si hubo un herror
 void RevisarResultadoRemoveEmployee(int resultado);
 
 //Case 4
+/** \brief Se encarga de llamar aquellas funciones necesarias para realizar
+un listado de los empleados, con el resto de los datos necesarios,
+ y avisar si no se puede
+ *
+ * \param lista[] eEmployee Puntero a la variedad de empleados
+ * \param tam int Longitud de la matriz
+ * \param bandera int La bandera que indicara si se puede o no,
+ realizar la operacion
+ * \return void
+ *
+ */
+void HacerLaLogicaDelCase4(eEmployee lista[], int tam, int bandera);
 // Parte 1
 
 /** \brief Se encarga de hacer la logica para informar la lista de empledos
@@ -167,6 +201,26 @@ y el resto de los datos necesarios
  *
  */
 void InformarListado(eEmployee lista[], int tam);
+
+/** \brief Se encarga de formalizar los nombre de los empleados
+ *
+ * \param lista[] eEmployee Puntero a la variedad de empleados
+ * \param tam int Longitud de la matriz
+ * \param buffer int El tamanio de la cadena a modificar
+ * \return void
+ *
+ */
+void FormalizarNombresDeUnArray(eEmployee lista[], int tam, int buffer);
+
+/** \brief Se encarga de formalizar los apellidos de los empleados
+ *
+ * \param lista[] eEmployee Puntero a la variedad de empleados
+ * \param tam int Longitud de la matriz
+ * \param buffer int El tamanio de la cadena a modificar
+ * \return void
+ *
+ */
+void FormalizarApellidosDeUnArray(eEmployee lista[], int tam, int buffer);
 
 /** \brief Mustra un pequenio menu pidiendole al usuario como quiere
 ver el listado de empledos(alfabeticamente)
@@ -251,4 +305,3 @@ el salario promedio
  *
  */
 int CalcularCantidadDeEmpleadosSalarioMayor(eEmployee lista[], int tam, float salarioPromedio);
-
