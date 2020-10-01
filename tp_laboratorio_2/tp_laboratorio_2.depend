@@ -24,7 +24,7 @@
 
 1600629004 c:\users\pc\desktop\tp_laboratorio_2\arrayemployees.h
 
-1601491201 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\main.c
+1601574545 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -42,7 +42,7 @@
 	<ctype.h>
 	"miBiblioteca.h"
 
-1601491410 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\arrayemployees.c
+1601574642 source:c:\users\pc\desktop\tp_laboratorio_2\tp_laboratorio_2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

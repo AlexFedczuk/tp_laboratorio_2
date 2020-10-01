@@ -214,7 +214,7 @@ void HacerLaLogicaDelCase2(eEmployee lista[], int tam, int bandera)
         ModificarUnEmpleado(lista, tam);
     }else
     {
-        printf("Error! Debe haber ingresado almenos un empleado para realizar esta operacion!");
+        printf("\nError! Debe haber ingresado almenos un empleado para realizar esta operacion!\n\n");
     }
 }
 
@@ -336,7 +336,7 @@ void HacerLaLogicaDelCase3(eEmployee lista[], int tam, int bandera)
         BajarEmpleado(lista, tam);
     }else
     {
-        printf("Error! Debe haber ingresado almenos un empleado para realizar esta operacion!");
+        printf("\nError! Debe haber ingresado almenos un empleado para realizar esta operacion!\n\n");
     }
 }
 
@@ -399,7 +399,7 @@ void HacerLaLogicaDelCase4(eEmployee lista[], int tam, int bandera)
         InformarListado(lista, tam);
     }else
     {
-        printf("Error! Debe haber ingresado almenos un empleado para realizar esta operacion!");
+        printf("\nError! Debe haber ingresado almenos un empleado para realizar esta operacion!\n\n");
     }
 }
 
